@@ -14,5 +14,6 @@ namespace Commerce.Data.Entities
         public Endereco Endereco { get; set; }
         public List<Pedido> Pedidos { get; set; }
         public List<Telefone> Telefones { get; set; }
+       
     }
 }

@@ -7,6 +7,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureDbContext(builder.Configuration);
+builder.Services.ResolveInjectionDepencies();
+builder.Services.ConfigureAutoMapper();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Edson\\source\\repos\\Commerce\\Commerce\\Commerce.csproj": {}
+    "C:\\Users\\Edson S Vanderlei\\Source\\Repos\\EdsonVanderlei\\Aspnet\\Commerce\\Commerce.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Edson\\source\\repos\\Commerce\\Commerce\\Commerce.csproj": {
+    "C:\\Users\\Edson S Vanderlei\\Source\\Repos\\EdsonVanderlei\\Aspnet\\Commerce\\Commerce.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Edson\\source\\repos\\Commerce\\Commerce\\Commerce.csproj",
+        "projectUniqueName": "C:\\Users\\Edson S Vanderlei\\Source\\Repos\\EdsonVanderlei\\Aspnet\\Commerce\\Commerce.csproj",
         "projectName": "Commerce",
-        "projectPath": "C:\\Users\\Edson\\source\\repos\\Commerce\\Commerce\\Commerce.csproj",
-        "packagesPath": "C:\\Users\\Edson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Edson\\source\\repos\\Commerce\\Commerce\\obj\\",
+        "projectPath": "C:\\Users\\Edson S Vanderlei\\Source\\Repos\\EdsonVanderlei\\Aspnet\\Commerce\\Commerce.csproj",
+        "packagesPath": "C:\\Users\\Edson S Vanderlei\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Edson S Vanderlei\\Source\\Repos\\EdsonVanderlei\\Aspnet\\Commerce\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Edson\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Edson S Vanderlei\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,11 +45,19 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.7, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Analyzers": {
               "target": "Package",
               "version": "[7.0.9, )"
             },
@@ -87,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

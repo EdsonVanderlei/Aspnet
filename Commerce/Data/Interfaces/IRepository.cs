@@ -12,7 +12,9 @@ namespace Commerce.Data.Interfaces
         Task<List<T>> ObterTodos();
         Task Atualizar(T entity);
         Task Remover(Guid id);
-        Task<IEnumerable<T>> Buscar (Expression<Func<T, bool>> expression);
+        Task SalvarTodos(List<T> list);
+        Task<T> Buscar(Expression<Func<T, bool>> expression);
+        Task<IEnumerable<T>> BuscarTodos (Expression<Func<T, bool>> expression);
         Task<int> SaveChanges();
     }
 }

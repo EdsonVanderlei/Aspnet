@@ -149,6 +149,35 @@ namespace Commerce.Migrations
                     b.ToTable("Produtos");
                 });
 
+            modelBuilder.Entity("Commerce.Data.Entities.Telefone", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("DDD")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Numero")
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<int>("Regiao")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Numero")
+                        .IsUnique()
+                        .HasFilter("[Numero] IS NOT NULL");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Telefone");
+                });
+
             modelBuilder.Entity("Commerce.Data.Entities.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
@@ -162,6 +191,10 @@ namespace Commerce.Migrations
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
@@ -174,6 +207,15 @@ namespace Commerce.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Cpf")
+                        .IsUnique();
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Rg")
+                        .IsUnique();
 
                     b.ToTable("Usuarios");
                 });
@@ -224,6 +266,17 @@ namespace Commerce.Migrations
                     b.Navigation("Marca");
                 });
 
+            modelBuilder.Entity("Commerce.Data.Entities.Telefone", b =>
+                {
+                    b.HasOne("Commerce.Data.Entities.Usuario", "Usuario")
+                        .WithMany("Telefones")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("PedidoProduto", b =>
                 {
                     b.HasOne("Commerce.Data.Entities.Pedido", null)
@@ -249,6 +302,8 @@ namespace Commerce.Migrations
                     b.Navigation("Endereco");
 
                     b.Navigation("Pedidos");
+
+                    b.Navigation("Telefones");
                 });
 #pragma warning restore 612, 618
         }
