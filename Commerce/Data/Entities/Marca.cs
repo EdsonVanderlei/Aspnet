@@ -1,8 +1,6 @@
-﻿using Commerce.Data.Classes;
-
-namespace Commerce.Data.Entities
+﻿namespace Commerce.Data.Entities
 {
-    public class Marca : TEntity
+    public class Marca : Entidade
     {
         public string Nome { get; set; }
         public string Descricao { get; set; }

@@ -1,8 +1,6 @@
-﻿using Commerce.Data.Classes;
-
-namespace Commerce.Data.Entities
+﻿namespace Commerce.Data.Entities
 {
-    public class Endereco : TEntity
+    public class Endereco : Entidade
     {
         public Guid UsuarioId { get; set; }
         public string Logradouro { get; set; }

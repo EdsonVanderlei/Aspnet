@@ -1,11 +1,9 @@
-﻿using Commerce.Data.Classes;
-using Commerce.Data.Enums;
+﻿using Commerce.Data.Enums;
 
 namespace Commerce.Data.Entities
 {
-    public class Pedido : TEntity
+    public class Pedido : Entidade
     {
-
         public Guid UsuarioId { get; set; }
         public Status Status { get; set; }
         public DateTime DataPedido { get; set; }
@@ -13,8 +11,7 @@ namespace Commerce.Data.Entities
         public int PrazoDias { get; set; }
         public double ValorFrete { get; set; }
         public double ValorTotal { get; set; }
-        public List<Produto> Produtos { get; set; }
         public Usuario Usuario { get; set; }
-
+        public List<PedidoItem> PedidosItens { get; set; }
     }
 }

@@ -3,10 +3,9 @@ using Commerce.Models;
 
 namespace Commerce.Services.Repository
 {
-    public interface IUserService
+    public interface IUsuarioServico
     {
-        Task<Usuario> Cadastrar(RegisterUsuario usuario);
-        Task<List<Telefone>> AtualizarTelefone(Guid id, Telefone telefone);
+        Task<Usuario> Cadastrar(CadastroUsuario usuario);
         Task<Endereco> AtualizarEndereco(Guid id,Endereco endereco);
 
     }

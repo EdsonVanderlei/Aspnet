@@ -8,7 +8,6 @@ namespace Commerce.Profiles
     {
         public UsuarioProfile()
         {
-            CreateMap<TelefoneDTO, Telefone>().ReverseMap();
             CreateMap<EnderecoDTO, Endereco>().ReverseMap();
             CreateMap<Usuario,UsuarioDTO>().ReverseMap();
         }

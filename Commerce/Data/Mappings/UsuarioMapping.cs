@@ -19,6 +19,5 @@ namespace Commerce.Data.Mappings
             builder.HasIndex(p => p.Rg).IsUnique();
             builder.HasIndex(p => p.Email).IsUnique();
         }
-
     }
 }

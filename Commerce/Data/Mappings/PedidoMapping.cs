@@ -9,8 +9,6 @@ namespace Commerce.Data.Mappings
         public void Configure(EntityTypeBuilder<Pedido> builder)
         {
             builder.HasKey(x => x.Id);
-
-            builder.HasMany<Produto>(p => p.Produtos).WithMany(p => p.Pedidos);
         }
     }
 }

@@ -4,6 +4,7 @@ namespace Commerce.Data.Interfaces
 {
     public interface IRepositoryUsuario : IRepository<Usuario>
     {
-        Task<Usuario> UsuariosEnderecoPedidosTelefone(Guid id);
+        Task<Usuario> UsuarioEnderecoPedido(Guid id);
+        Task<List<Usuario>> UsuariosEnderecoPedido();
     }
 }

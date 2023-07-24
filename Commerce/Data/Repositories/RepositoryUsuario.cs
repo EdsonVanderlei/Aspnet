@@ -9,9 +9,13 @@ namespace Commerce.Data.Repositories
         public RepositoryUsuario(CommerceContext commerceContext) : base(commerceContext)
         {
         }
-        async public Task<Usuario> UsuariosEnderecoPedidosTelefone(Guid id)
+        async public Task<Usuario> UsuarioEnderecoPedido(Guid id)
         {
-            return await  _dbSet.Include(p => p.Pedidos).Include(p => p.Telefones).Include(p => p.Endereco).FirstOrDefaultAsync(p => p.Id == id);
+            return await  _dbSet.Include(p => p.Pedidos).Include(p => p.Endereco).FirstOrDefaultAsync(p => p.Id == id);
+        }
+        async public Task<List<Usuario>> UsuariosEnderecoPedido()
+        {
+            return await _dbSet.AsNoTracking().Include(p => p.Pedidos).Include(p => p.Endereco).ToListAsync();
         }
     }
 }

@@ -12,27 +12,20 @@ namespace Commerce.Controllers
     [Route("[controller]")]
     public class UsuarioController : ControllerBase
     {
-
-        private readonly IRepositoryUsuario _repositoryUsuario;
-        private readonly IMapper _mapper;
-        private readonly IUserService _userService;
-        public UsuarioController(IRepositoryUsuario repositoryUsuario, IMapper mapper, IUserService userService)
+        private readonly IUsuarioServico _userService;
+        public UsuarioController(IUsuarioServico userService)
         {
-            _repositoryUsuario = repositoryUsuario;
-            _mapper = mapper;
             _userService = userService;
         }
-
         [HttpPost("Adicionar")]
-        async public Task<ActionResult> AddUsuario(RegisterUsuario usuario)
+        async public Task<ActionResult> AdicionarUsuario(CadastroUsuario usuario)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-               var user =  await _userService.Cadastrar(usuario);
-           
-                return Ok(user);
+                return BadRequest(ModelState.SelectMany(p => p.Value.Errors).ToList());
             }
-            return BadRequest(ModelState.Select(p => p.Value.Errors).ToList().ToString());
+            var user = await _userService.Cadastrar(usuario);
+            return Ok(user);
         }
     }
 }

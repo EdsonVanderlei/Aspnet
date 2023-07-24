@@ -19,6 +19,5 @@ namespace Commerce.Models
         public string Rg { get; set; }
         [Required(ErrorMessage = "DateTime é Obrigatória")]
         public DateTime DataNascimento { get; set; }
-
     }
 }
