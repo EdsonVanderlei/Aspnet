@@ -11,7 +11,7 @@ namespace Commerce.Controllers
     {
 
         [HttpGet("Pedido")]
-        async public Task<ActionResult> FazerPedido(List<PedidoDTO> pedidosRequest)
+        async public Task<ActionResult> FazerPedido(List<ProdutoDTO> pedidosRequest)
         {
             if(!ModelState.IsValid) {
                 return BadRequest(ModelState.SelectMany(p => p.Value.Errors).ToList());

@@ -28,6 +28,13 @@ namespace Commerce.Services
         {
             if (usuario != null)
             {
+                if(!_repositoryUsuario.ExisteCpf(usuario.Cpf).Result){
+                    return null;
+                } if(!_repositoryUsuario.ExisteEmail(usuario.Email).Result){
+                    return null;
+                } if(!_repositoryUsuario.ExisteRg(usuario.Rg).Result){
+                    return null;
+                }
                 Endereco endereco = _mapper.Map<Endereco>(usuario.Endereco);
                 Usuario User = _mapper.Map<Usuario>(usuario);
                 User.Endereco = endereco;
