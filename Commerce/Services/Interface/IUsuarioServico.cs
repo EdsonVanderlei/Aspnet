@@ -5,8 +5,9 @@ namespace Commerce.Services.Repository
 {
     public interface IUsuarioServico
     {
-        Task<Usuario> Cadastrar(CadastroUsuario usuario);
-        Task<Endereco> AtualizarEndereco(Guid id,Endereco endereco);
-
+        Task Cadastrar(CadastroUsuario usuario);
+        Task AtualizarEndereco(Guid id,EnderecoDTO endereco);
+        Task DeletarUsuario(Guid id);
+        Task Atualizar(UsuarioDTO usuario);
     }
 }

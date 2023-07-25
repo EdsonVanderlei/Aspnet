@@ -6,7 +6,7 @@ using Commerce.Services.Repository;
 
 namespace Commerce.Services
 {
-    public class UsuarioServico : IUsuarioServico
+    public class UsuarioServico : BaseServico, IUsuarioServico
     {
 
         private readonly IRepositoryUsuario _repositoryUsuario;
@@ -17,24 +17,22 @@ namespace Commerce.Services
             _repositoryUsuario = repositoryUsuario;
             _mapper = mapper;
         }
-        async public Task<Endereco> AtualizarEndereco(Guid id, Endereco endereco)
+
+        public Task Atualizar(UsuarioDTO usuario)
         {
-            var user = await _repositoryUsuario.ObterPorId(id);
-            user.Endereco = endereco;
-            await _repositoryUsuario.Atualizar(user);
-            return user.Endereco;
+            throw new NotImplementedException();
         }
+
+        public Task<Endereco> AtualizarEndereco(Guid id, EnderecoDTO endereco)
+        {
+            throw new NotImplementedException();
+        }
+
         async public Task<Usuario> Cadastrar(CadastroUsuario usuario)
         {
             if (usuario != null)
             {
-                if(!_repositoryUsuario.ExisteCpf(usuario.Cpf).Result){
-                    return null;
-                } if(!_repositoryUsuario.ExisteEmail(usuario.Email).Result){
-                    return null;
-                } if(!_repositoryUsuario.ExisteRg(usuario.Rg).Result){
-                    return null;
-                }
+                
                 Endereco endereco = _mapper.Map<Endereco>(usuario.Endereco);
                 Usuario User = _mapper.Map<Usuario>(usuario);
                 User.Endereco = endereco;
@@ -42,6 +40,11 @@ namespace Commerce.Services
                 return User;
             }
             return null;
+        }
+
+        public Task<Usuario> DeletarUsuario(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

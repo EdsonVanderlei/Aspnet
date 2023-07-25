@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kWKp8VxRIpXt6X3XVBNPOfclYwiyYVdaRKM6QObYqoLOn2j8Xp5BoFzekxR1GyIs5QuK2NLmWFYl4Eqg6/IZ4w==",
+  "dgSpecHash": "7ETW899YhjceHZjJoFoMZrcP6+mqAVdEms6G4k5gNzQl1TGQnHbQcteLshrTlvoqOIuo7/8MfB80ZgO8u232FQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Edson S Vanderlei\\Source\\Repos\\EdsonVanderlei\\Aspnet\\Commerce\\Commerce.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Edson S Vanderlei\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Edson S Vanderlei\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Edson S Vanderlei\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Edson S Vanderlei\\.nuget\\packages\\fluentvalidation\\11.6.0\\fluentvalidation.11.6.0.nupkg.sha512",
     "C:\\Users\\Edson S Vanderlei\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Edson S Vanderlei\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.7\\microsoft.aspnetcore.openapi.7.0.7.nupkg.sha512",
     "C:\\Users\\Edson S Vanderlei\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",

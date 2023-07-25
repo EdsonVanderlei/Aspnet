@@ -8,20 +8,13 @@ namespace Commerce.Controllers
     [ApiController]
     public abstract class MainController : ControllerBase
     {
-
-        protected ActionResult CustomResponse(ModelStateDictionary modelState)
-        {
-
-        } 
-
+        protected ActionResult CustomResponse(ModelStateDictionary modelState){} 
         protected void NotificarErroModelInvalida(ModelStateDictionary modelState) {
-
             var erros = modelState.SelectMany(p => p.Value.Errors);
             foreach( var erro in erros)
             {
                  var erroMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message; 
             }
         }
-
     }
 }

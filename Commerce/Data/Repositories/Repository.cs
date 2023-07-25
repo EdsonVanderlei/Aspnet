@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Commerce.Data.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : Entidade, new()
+    public abstract class Repository<T> : IRepository<T> where T : Entidade, new()
     {
 
         protected readonly CommerceContext _commerceContext;
