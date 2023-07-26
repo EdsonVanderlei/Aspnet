@@ -21,7 +21,12 @@ namespace Commerce.Controllers
         {
             if (_notificador.TemNotificacao())
             {
-                _notificador.ObterNotificacoes();
+                var notificacoes = _notificador.ObterNotificacoes();
+
+                return BadRequest(new {
+                    sucesso = false,
+                    erros = notificacoes
+                });
             }
         }
 
