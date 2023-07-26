@@ -1,4 +1,6 @@
 ﻿using Commerce.Data.Entities;
+using Commerce.Models;
+using Commerce.Notifications;
 using Commerce.Notifications.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
@@ -18,7 +20,7 @@ namespace Commerce.Services
 
         protected void Notificar(string MensagemErro)
         {
-            _notificador.Handle(MensagemErro);
+            _notificador.Handle(new Notificacao(MensagemErro));
         }
 
         protected void Notificar(ValidationResult validationResult)

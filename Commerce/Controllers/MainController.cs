@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Commerce.Notifications.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -8,13 +9,25 @@ namespace Commerce.Controllers
     [ApiController]
     public abstract class MainController : ControllerBase
     {
-        protected ActionResult CustomResponse(ModelStateDictionary modelState){} 
-        protected void NotificarErroModelInvalida(ModelStateDictionary modelState) {
-            var erros = modelState.SelectMany(p => p.Value.Errors);
-            foreach( var erro in erros)
+
+        private readonly INotificador _notificador;
+
+        protected MainController(INotificador notificador)
+        {
+            _notificador = notificador;
+        }
+
+        protected ActionResult CustomResponse()
+        {
+            if (_notificador.TemNotificacao())
             {
-                 var erroMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message; 
+                _notificador.ObterNotificacoes();
             }
+        }
+
+        protected bool OperacaoValida()
+        {
+            return !_notificador.TemNotificacao();
         }
     }
 }

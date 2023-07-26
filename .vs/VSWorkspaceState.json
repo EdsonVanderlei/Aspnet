@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Commerce",
-    "\\Commerce\\Data",
-    "\\Commerce\\Data\\Entities"
+    "\\Commerce\\Controllers"
   ],
-  "SelectedNode": "\\Commerce\\Data\\Entities\\Usuario.cs",
+  "SelectedNode": "\\Commerce\\Controllers\\UsuarioController.cs",
   "PreviewInSolutionExplorer": false
 }

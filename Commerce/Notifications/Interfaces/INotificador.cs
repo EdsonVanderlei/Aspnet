@@ -1,4 +1,6 @@
-﻿namespace Commerce.Notifications.Interfaces
+﻿using Commerce.Models;
+
+namespace Commerce.Notifications.Interfaces
 {
     public interface INotificador
     {

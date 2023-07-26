@@ -3,6 +3,7 @@ using Commerce.Data.Entities;
 using Commerce.Data.Interfaces;
 using Commerce.Data.Validations;
 using Commerce.Models;
+using Commerce.Notifications.Interfaces;
 using Commerce.Services.Repository;
 
 namespace Commerce.Services
@@ -13,7 +14,7 @@ namespace Commerce.Services
         private readonly IMapper _mapper;
         private readonly IRepositoryUsuario _repositoryUsuario;
 
-        public UsuarioService(IMapper mapper)
+        public UsuarioService(IMapper mapper, INotificador notificador) : base(notificador)
         {
             _mapper = mapper;
         }
@@ -34,17 +35,17 @@ namespace Commerce.Services
             var validator = new UsuarioValidation();
             if (!ExecutarValidacao(new UsuarioValidation(), Usuario)) return;
 
-            if(_repositoryUsuario.Buscar(p => p.Email  == Usuario.Email) != null)
+            if(await _repositoryUsuario.Buscar(p => p.Email  == Usuario.Email) != null)
             {
                 Notificar("Já possui um E-mail Cadastrado !");
                 return;
             }
-            if (_repositoryUsuario.Buscar(p => p.Cpf == Usuario.Cpf) != null)
+            if (await _repositoryUsuario.Buscar(p => p.Cpf == Usuario.Cpf) != null)
             {
                 Notificar("Já possui um Cpf Cadastrado !");
                 return;
             }
-            if (_repositoryUsuario.Buscar(p => p.Rg == Usuario.Rg) != null)
+            if (await _repositoryUsuario.Buscar(p => p.Rg == Usuario.Rg) != null)
             {
                 Notificar("RG já existente !");
                 return;

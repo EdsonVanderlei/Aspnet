@@ -1,4 +1,5 @@
-﻿using Commerce.Notifications.Interfaces;
+﻿using Commerce.Models;
+using Commerce.Notifications.Interfaces;
 
 namespace Commerce.Notifications
 {
@@ -20,9 +21,5 @@ namespace Commerce.Notifications
         {
             return _notificacoes.Any();
         }
-    }
-    public class Notificacao
-    {
-
     }
 }
