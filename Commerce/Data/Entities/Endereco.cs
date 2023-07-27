@@ -11,5 +11,6 @@
         public string Cep { get; set; }
         public string Complemento { get; set; }
         public Usuario Usuario { get; set; }
+        public List<Entrega> Entregas { get; set; }
     }
 }

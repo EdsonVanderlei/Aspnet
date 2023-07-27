@@ -8,10 +8,9 @@ namespace Commerce.Data.Entities
         public Status Status { get; set; }
         public DateTime DataPedido { get; set; }
         public Pagamento ModoPagamento { get; set; }
-        public int PrazoDias { get; set; }
-        public double ValorFrete { get; set; }
-        public double ValorTotal { get; set; }
+        public decimal ValorTotal { get; set; }
         public Usuario Usuario { get; set; }
-        public List<PedidoItem> PedidosItens { get; set; }
+        public Entrega Entrega { get; set; }
+        public List<PedidoProduto> PedidosItens { get; set; }
     }
 }

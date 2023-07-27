@@ -25,22 +25,22 @@ namespace Commerce.Services
 
         protected void Notificar(ValidationResult validationResult)
         {
-            foreach(var item in validationResult.Errors)
+            foreach (var item in validationResult.Errors)
             {
                 Notificar(item.ErrorMessage);
             }
         }
 
+        protected bool TemNotificacao()
+        {
+            return _notificador.ObterNotificacoes().Any();
+        }
         protected bool ExecutarValidacao<TV, TE>(TV validacao, TE entidade) where TV : AbstractValidator<TE> where TE : Entidade
         {
             var validate = validacao.Validate(entidade);
             if (validate.IsValid) return true;
             Notificar(validate);
             return false;
-            
         }
     }
-
-
-
 }

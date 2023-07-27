@@ -22,17 +22,12 @@ namespace Commerce.Controllers
         [HttpPost("Adicionar")]
         async public Task<ActionResult> AdicionarUsuario(CadastroUsuario usuario)
         {
-          
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState.SelectMany(p => p.Value.Errors).ToList());
             }
             await _userService.Cadastrar(usuario);
-            if (OperacaoValida())
-            {
-
-            }
-            return Ok(usuario);
+            return CustomResponse(usuario);
         }
     }
 }

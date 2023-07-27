@@ -1,6 +1,8 @@
-﻿namespace Commerce.Helpers
+﻿using System.Text.RegularExpressions;
+
+namespace Commerce.Helpers
 {
-    public abstract class ValidarDocumento
+    public abstract class Validacoes
     {
         public static bool ValidarCPF(string cpf)
         {
@@ -36,6 +38,25 @@
                 resto = 11 - resto;
             digito = digito + resto.ToString();
             return cpf.EndsWith(digito);
+        }
+
+        public static bool ValidarTelefone(string telefone)
+        {
+            string numeroLimpo = Regex.Replace(telefone, @"[^0-9]", "");
+
+            // Expressão regular para validar o número de telefone
+            string regex = @"^\(?\d{2}\)? ?(?:[2-8]|9[1-9])\d{3}-?\d{4}$";
+
+            return Regex.IsMatch(numeroLimpo, regex);
+        }
+
+        public static bool ValidaCEP(string cep)
+        {
+            Regex Rgx = new Regex(@"^\d{8}$");
+            if (!Rgx.IsMatch(cep))
+                return false;
+            else
+                return true;
         }
     }
 }

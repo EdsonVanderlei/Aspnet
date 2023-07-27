@@ -3,7 +3,7 @@ using Commerce.Models;
 
 namespace Commerce.Services.Repository
 {
-    public interface IUsuarioServico
+    public interface IUsuarioServico : IDisposable
     {
         Task Cadastrar(CadastroUsuario usuario);
         Task AtualizarEndereco(Guid id,EnderecoDTO endereco);

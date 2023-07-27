@@ -15,8 +15,6 @@ namespace Commerce.Configuration
             services.AddScoped<IRepositoryUsuario, RepositoryUsuario>();
             services.AddScoped<INotificador, Notificador>();
             return services;
-
         }
-
     }
 }

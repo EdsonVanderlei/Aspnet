@@ -17,17 +17,20 @@ namespace Commerce.Controllers
             _notificador = notificador;
         }
 
-        protected ActionResult CustomResponse()
+        protected ActionResult CustomResponse(object obj = null)
         {
-            if (_notificador.TemNotificacao())
+            if (OperacaoValida())
             {
-                var notificacoes = _notificador.ObterNotificacoes();
-
-                return BadRequest(new {
-                    sucesso = false,
-                    erros = notificacoes
+                return Ok(new {
+                    sucesso = true,
+                    result = obj
                 });
             }
+            return BadRequest(new
+            {
+                sucesso = false,
+                erros = _notificador.ObterNotificacoes().Select(p => p.Mensagem)
+            });
         }
 
         protected bool OperacaoValida()

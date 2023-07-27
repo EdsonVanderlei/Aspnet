@@ -16,25 +16,25 @@ namespace Commerce.Data.Repositories
             _dbSet = commerceContext.Set<T>();
             _commerceContext = commerceContext;
         }
-        async public Task Adicionar(T entity)
+        async public virtual Task Adicionar(T entity)
         {
             await _dbSet.AddAsync(entity);
             await SaveChanges();
         }
-        async public Task<int> Atualizar(T entity)
+        async public virtual Task<int> Atualizar(T entity)
         {
             _dbSet.Update(entity);
             return await SaveChanges();
         }
-        public async Task<T> Buscar(Expression<Func<T, bool>> expression)
+        public async virtual Task<T> Buscar(Expression<Func<T, bool>> expression)
         {
             return await _dbSet.AsNoTracking().FirstOrDefaultAsync(expression);
         }
-        public async Task<IEnumerable<T>> BuscarTodos(Expression<Func<T, bool>> expression)
+        public async virtual Task<IEnumerable<T>> BuscarTodos(Expression<Func<T, bool>> expression)
         {
             return await _dbSet.AsNoTracking().Where(expression).ToListAsync();
         }
-        public void Dispose()
+        virtual public void Dispose()
         {
             _commerceContext.Dispose();
         }

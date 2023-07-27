@@ -15,6 +15,8 @@ namespace Commerce.Data.Mappings
             builder.Property(p => p.Email).IsRequired().HasColumnType("varchar(100)");
             builder.Property(p => p.Cpf).IsRequired().HasColumnType("varchar(14)");
             builder.Property(p => p.Rg).IsRequired().HasColumnType("varchar(9)");
+            builder.Property(p => p.DataNascimento).IsRequired();
+            builder.Property(p => p.DataNascimento).IsRequired();
             builder.HasIndex(p => p.Cpf).IsUnique();
             builder.HasIndex(p => p.Rg).IsUnique();
             builder.HasIndex(p => p.Email).IsUnique();

@@ -22,6 +22,25 @@ namespace Commerce.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Commerce.Data.Entities.Categoria", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categoria");
+                });
+
             modelBuilder.Entity("Commerce.Data.Entities.Endereco", b =>
                 {
                     b.Property<Guid>("Id")
@@ -41,7 +60,6 @@ namespace Commerce.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Complemento")
-                        .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Estado")
@@ -52,8 +70,8 @@ namespace Commerce.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int>("Numero")
-                        .HasColumnType("int");
+                    b.Property<long>("Numero")
+                        .HasColumnType("bigint");
 
                     b.Property<Guid>("UsuarioId")
                         .HasColumnType("uniqueidentifier");
@@ -64,6 +82,34 @@ namespace Commerce.Migrations
                         .IsUnique();
 
                     b.ToTable("Enderecos");
+                });
+
+            modelBuilder.Entity("Commerce.Data.Entities.Entrega", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("EnderecoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PedidoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("PrazoDias")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ValorFrete")
+                        .HasColumnType("DECIMAL(11,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EnderecoId");
+
+                    b.HasIndex("PedidoId")
+                        .IsUnique();
+
+                    b.ToTable("Entrega");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.Marca", b =>
@@ -92,16 +138,10 @@ namespace Commerce.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataPedido")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("DateTime");
 
                     b.Property<int>("ModoPagamento")
                         .HasColumnType("int");
-
-                    b.Property<int>("PrazoDias")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("ProdutoId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -109,43 +149,41 @@ namespace Commerce.Migrations
                     b.Property<Guid>("UsuarioId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("ValorFrete")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ValorTotal")
-                        .HasColumnType("float");
+                    b.Property<decimal>("ValorTotal")
+                        .HasColumnType("DECIMAL(11,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProdutoId");
 
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Pedidos");
                 });
 
-            modelBuilder.Entity("Commerce.Data.Entities.PedidoItem", b =>
+            modelBuilder.Entity("Commerce.Data.Entities.PedidoProduto", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PedidoID")
+                    b.Property<Guid?>("PedidoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProdutoID")
+                    b.Property<Guid?>("ProdutoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Valor")
-                        .HasColumnType("float");
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("DECIMAL(11,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PedidoID");
+                    b.HasIndex("PedidoId");
 
-                    b.HasIndex("ProdutoID");
+                    b.HasIndex("ProdutoId");
 
-                    b.ToTable("PedidoItem");
+                    b.ToTable("PedidoProduto");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.Produto", b =>
@@ -157,6 +195,9 @@ namespace Commerce.Migrations
                     b.Property<int>("Avaliacao")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("CategoriaId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
@@ -166,12 +207,14 @@ namespace Commerce.Migrations
 
                     b.Property<string>("Modelo")
                         .IsRequired()
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(100)");
 
-                    b.Property<double>("Valor")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("DECIMAL(11,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoriaId");
 
                     b.HasIndex("MarcaId");
 
@@ -194,6 +237,9 @@ namespace Commerce.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
+
+                    b.Property<Guid>("EnderecoId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -234,12 +280,25 @@ namespace Commerce.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("Commerce.Data.Entities.Entrega", b =>
+                {
+                    b.HasOne("Commerce.Data.Entities.Endereco", "Endereco")
+                        .WithMany("Entregas")
+                        .HasForeignKey("EnderecoId");
+
+                    b.HasOne("Commerce.Data.Entities.Pedido", "Pedido")
+                        .WithOne("Entrega")
+                        .HasForeignKey("Commerce.Data.Entities.Entrega", "PedidoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Endereco");
+
+                    b.Navigation("Pedido");
+                });
+
             modelBuilder.Entity("Commerce.Data.Entities.Pedido", b =>
                 {
-                    b.HasOne("Commerce.Data.Entities.Produto", null)
-                        .WithMany("Pedidos")
-                        .HasForeignKey("ProdutoId");
-
                     b.HasOne("Commerce.Data.Entities.Usuario", "Usuario")
                         .WithMany("Pedidos")
                         .HasForeignKey("UsuarioId")
@@ -249,19 +308,15 @@ namespace Commerce.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("Commerce.Data.Entities.PedidoItem", b =>
+            modelBuilder.Entity("Commerce.Data.Entities.PedidoProduto", b =>
                 {
                     b.HasOne("Commerce.Data.Entities.Pedido", "Pedido")
                         .WithMany("PedidosItens")
-                        .HasForeignKey("PedidoID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PedidoId");
 
                     b.HasOne("Commerce.Data.Entities.Produto", "Produto")
                         .WithMany("PedidosItens")
-                        .HasForeignKey("ProdutoID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProdutoId");
 
                     b.Navigation("Pedido");
 
@@ -270,11 +325,27 @@ namespace Commerce.Migrations
 
             modelBuilder.Entity("Commerce.Data.Entities.Produto", b =>
                 {
+                    b.HasOne("Commerce.Data.Entities.Categoria", "Categoria")
+                        .WithMany("Produtos")
+                        .HasForeignKey("CategoriaId");
+
                     b.HasOne("Commerce.Data.Entities.Marca", "Marca")
                         .WithMany("Produtos")
                         .HasForeignKey("MarcaId");
 
+                    b.Navigation("Categoria");
+
                     b.Navigation("Marca");
+                });
+
+            modelBuilder.Entity("Commerce.Data.Entities.Categoria", b =>
+                {
+                    b.Navigation("Produtos");
+                });
+
+            modelBuilder.Entity("Commerce.Data.Entities.Endereco", b =>
+                {
+                    b.Navigation("Entregas");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.Marca", b =>
@@ -284,13 +355,13 @@ namespace Commerce.Migrations
 
             modelBuilder.Entity("Commerce.Data.Entities.Pedido", b =>
                 {
+                    b.Navigation("Entrega");
+
                     b.Navigation("PedidosItens");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.Produto", b =>
                 {
-                    b.Navigation("Pedidos");
-
                     b.Navigation("PedidosItens");
                 });
 
