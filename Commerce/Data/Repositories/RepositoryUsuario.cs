@@ -7,7 +7,6 @@ namespace Commerce.Data.Repositories
     public class RepositoryUsuario : Repository<Usuario> , IRepositoryUsuario
     {
         public RepositoryUsuario(CommerceContext commerceContext) : base(commerceContext){}
-
      
         async public Task<Usuario> UsuarioEnderecoPedido(Guid id)
         {

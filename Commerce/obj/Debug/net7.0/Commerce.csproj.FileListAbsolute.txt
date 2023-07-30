@@ -154,3 +154,7 @@ C:\Users\Edson S Vanderlei\Source\Repos\EdsonVanderlei\Aspnet\Commerce\bin\Debug
 C:\Users\Edson S Vanderlei\Source\Repos\EdsonVanderlei\Aspnet\Commerce\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Edson S Vanderlei\Source\Repos\EdsonVanderlei\Aspnet\Commerce\bin\Debug\net7.0\FluentValidation.dll
 C:\Users\Edson S Vanderlei\Source\Repos\EdsonVanderlei\Aspnet\Commerce\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Users\Edson\source\repos\Commerce\Commerce\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\Edson\source\repos\Commerce\Commerce\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Edson\source\repos\Commerce\Commerce\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Users\Edson\source\repos\Commerce\Commerce\bin\Debug\net7.0\FluentValidation.dll

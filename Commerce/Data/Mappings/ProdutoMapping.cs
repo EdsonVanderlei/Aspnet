@@ -11,8 +11,9 @@ namespace Commerce.Data.Mappings
             builder.HasKey(x => x.Id);
             builder.Property(p => p.Modelo).IsRequired().HasColumnType("varchar(100)");
             builder.Property(p => p.Descricao).IsRequired().HasColumnType("varchar(100)");
-            builder.HasOne<Marca>(p => p.Marca).WithMany(p => p.Produtos);
+            builder.HasOne(p => p.Marca).WithMany(p => p.Produtos);
             builder.Property(p => p.Valor).IsRequired().HasColumnType("DECIMAL(11,2)");
+            builder.ToTable("Produtos");
         }
     }
 }

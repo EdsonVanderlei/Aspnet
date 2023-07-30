@@ -29,7 +29,18 @@ namespace Commerce.Services
 
         async public Task AtualizarEndereco(Guid id, EnderecoDTO endereco)
         {
-            throw new NotImplementedException();
+            var usuario = await _repositoryUsuario.ObterPorId(id);
+            if (usuario == null)
+            {
+                Notificar("Usuário não encontrado !");
+                return;
+            }
+            var Endereco = _mapper.Map<Endereco>(endereco);
+            if (!ExecutarValidacao(new EnderecoValidation(), Endereco)) return;
+
+            usuario.Endereco = Endereco;
+            await _repositoryUsuario.Atualizar(usuario);
+            Dispose();
         }
 
         async public Task Cadastrar(CadastroUsuario usuario)
@@ -39,28 +50,26 @@ namespace Commerce.Services
             var validator = new UsuarioValidation();
             ExecutarValidacao(new UsuarioValidation(), Usuario);
             ExecutarValidacao(new EnderecoValidation(), Endereco);
-            if (TemNotificacao()) return;
 
             if (await _repositoryUsuario.Buscar(p => p.Email == Usuario.Email) != null)
             {
                 Notificar("Já possui um E-mail Cadastrado !");
-                return;
             }
             if (await _repositoryUsuario.Buscar(p => p.Cpf == Usuario.Cpf) != null)
             {
                 Notificar("Já possui um Cpf Cadastrado !");
-                return;
             }
             if (await _repositoryUsuario.Buscar(p => p.Rg == Usuario.Rg) != null)
             {
                 Notificar("RG já existente !");
-                return;
             }
             if (await _repositoryUsuario.Buscar(p => p.Telefone == Usuario.Telefone) != null)
             {
                 Notificar("Telefone já existente !");
-                return;
             }
+
+            if (TemNotificacao()) return;
+
             Usuario.Cpf = Regex.Replace(Usuario.Cpf, "[^0-9]", "");
             Usuario.Rg = Regex.Replace(Usuario.Rg, "[^0-9]", "");
             Usuario.Telefone = Regex.Replace(Usuario.Telefone, "[^0-9]", "");
@@ -72,9 +81,16 @@ namespace Commerce.Services
             Dispose();
         }
 
-        public Task DeletarUsuario(Guid id)
+        public async Task DeletarUsuario(Guid id)
         {
-            throw new NotImplementedException();
+            var usuario = await _repositoryUsuario.ObterPorId(id);
+            if (usuario == null)
+            {
+                Notificar("Usuário não existe !");
+                return;
+            }
+            await _repositoryUsuario.Remover(id);
+            Dispose();
         }
 
         public void Dispose()

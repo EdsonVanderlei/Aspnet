@@ -9,9 +9,10 @@ namespace Commerce.Data.Mappings
         public void Configure(EntityTypeBuilder<PedidoProduto> builder)
         {
             builder.HasKey(p => p.Id);
-            builder.HasOne<Pedido>(p => p.Pedido).WithMany(p => p.PedidosItens);
-            builder.HasOne<Produto>(p => p.Produto).WithMany(p => p.PedidosItens);
+            builder.HasOne(p => p.Pedido).WithMany(p => p.PedidosItens);
+            builder.HasOne(p => p.Produto).WithMany(p => p.PedidosItens);
             builder.Property(p => p.Valor).IsRequired().HasColumnType("DECIMAL(11,2)");
+            builder.ToTable("PedidosProdutos");
         }
     }
 }

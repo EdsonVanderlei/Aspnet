@@ -13,6 +13,7 @@ namespace Commerce.Data.Mappings
             builder.Property(p => p.DataPedido).IsRequired().HasColumnType("DateTime");
             builder.Property(p => p.ModoPagamento).IsRequired();
             builder.Property(p => p.ValorTotal).IsRequired().HasColumnType("DECIMAL(11,2)");
+            builder.ToTable("Pedidos");
         }
     }
 }

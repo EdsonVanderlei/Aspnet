@@ -4,6 +4,7 @@ using Commerce.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Commerce.Migrations
 {
     [DbContext(typeof(CommerceContext))]
-    partial class CommerceContextModelSnapshot : ModelSnapshot
+    [Migration("20230730165916_UpdateMappings")]
+    partial class UpdateMappings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +41,7 @@ namespace Commerce.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categorias", (string)null);
+                    b.ToTable("Categoria");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.Endereco", b =>
@@ -81,7 +84,7 @@ namespace Commerce.Migrations
                     b.HasIndex("UsuarioId")
                         .IsUnique();
 
-                    b.ToTable("Enderecos", (string)null);
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.Entrega", b =>
@@ -109,7 +112,7 @@ namespace Commerce.Migrations
                     b.HasIndex("PedidoId")
                         .IsUnique();
 
-                    b.ToTable("Entregas", (string)null);
+                    b.ToTable("Entrega");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.Marca", b =>
@@ -128,7 +131,7 @@ namespace Commerce.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Marcas", (string)null);
+                    b.ToTable("Marcas");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.Pedido", b =>
@@ -156,7 +159,7 @@ namespace Commerce.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Pedidos", (string)null);
+                    b.ToTable("Pedidos");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.PedidoProduto", b =>
@@ -183,7 +186,7 @@ namespace Commerce.Migrations
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("PedidosProdutos", (string)null);
+                    b.ToTable("PedidoProduto");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.Produto", b =>
@@ -218,7 +221,7 @@ namespace Commerce.Migrations
 
                     b.HasIndex("MarcaId");
 
-                    b.ToTable("Produtos", (string)null);
+                    b.ToTable("Produtos");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.Usuario", b =>
@@ -263,7 +266,7 @@ namespace Commerce.Migrations
                     b.HasIndex("Rg")
                         .IsUnique();
 
-                    b.ToTable("Usuarios", (string)null);
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("Commerce.Data.Entities.Endereco", b =>

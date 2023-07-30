@@ -11,6 +11,7 @@ namespace Commerce.Data.Mappings
             builder.HasKey(x => x.Id);
             builder.Property(p => p.Nome).IsRequired().HasColumnType("varchar(100)");
             builder.Property(p => p.Descricao).IsRequired().HasColumnType("varchar(100)");
+            builder.ToTable("Marcas");
         }
     }
 }
