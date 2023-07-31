@@ -9,7 +9,7 @@ namespace Commerce.Configuration
 {
     public static class InjectionDepenciesConfigs
     {
-        public static IServiceCollection ResolveInjectionDepencies(this IServiceCollection services)
+        public static IServiceCollection ResolveDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<IUsuarioServico, UsuarioService>();
             services.AddScoped<IRepositoryUsuario, RepositoryUsuario>();

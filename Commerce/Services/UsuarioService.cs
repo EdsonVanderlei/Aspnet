@@ -59,10 +59,7 @@ namespace Commerce.Services
             {
                 Notificar("Já possui um Cpf Cadastrado !");
             }
-            if (await _repositoryUsuario.Buscar(p => p.Rg == Usuario.Rg) != null)
-            {
-                Notificar("RG já existente !");
-            }
+          
             if (await _repositoryUsuario.Buscar(p => p.Telefone == Usuario.Telefone) != null)
             {
                 Notificar("Telefone já existente !");
@@ -71,7 +68,6 @@ namespace Commerce.Services
             if (TemNotificacao()) return;
 
             Usuario.Cpf = Regex.Replace(Usuario.Cpf, "[^0-9]", "");
-            Usuario.Rg = Regex.Replace(Usuario.Rg, "[^0-9]", "");
             Usuario.Telefone = Regex.Replace(Usuario.Telefone, "[^0-9]", "");
             Usuario.Endereco = Endereco;
             Usuario.Endereco.Cep = Regex.Replace(Endereco.Cep, "[^0-9]", "");

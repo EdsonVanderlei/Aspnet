@@ -5,7 +5,7 @@ namespace Commerce.Data
 {
     public class CommerceContext : DbContext
     {
-        public CommerceContext(DbContextOptions options) : base(options){}
+        public CommerceContext(DbContextOptions<CommerceContext> options) : base(options){}
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Produto> Produtos { get; set; }

@@ -12,9 +12,7 @@ namespace Commerce.Data.Validations
                 .NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido")
                 .Length(10, 100).WithMessage("O campo {PropertyName} precisa ter entre {MinLength} e {MaxLength} caracteres");
 
-            RuleFor(p => p.Rg)
-                .NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido")
-                .Length(9,11).WithMessage("O campo {PropertyName} precisa ter entre {MinLength} e {MaxLength} caracteres");
+         
 
             RuleFor(p => p.Email)
                 .NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido")

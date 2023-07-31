@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Commerce.Models;
 
 namespace Commerce.Controllers
 {
@@ -15,6 +16,21 @@ namespace Commerce.Controllers
         protected MainController(INotificador notificador)
         {
             _notificador = notificador;
+        }
+
+        protected bool CustomRespomse(ModelStateDictionary modelState)
+        {
+            if (ModelState.IsValid)
+            {
+                return true;
+            }
+            var erros = modelState.SelectMany(p => p.Value.Errors).ToList();
+            foreach( var erro in erros)
+            {
+                string message = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
+                _notificador.Handle(new Notificacao(message));
+            }
+            return false;
         }
 
         protected ActionResult CustomResponse(object obj = null)
