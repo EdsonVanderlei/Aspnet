@@ -10,7 +10,7 @@ public static class IdentityConfig
     public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-        services.AddIdentity<UserIdentity, IdentityRole>()
+        services.AddIdentity<IdentityUser, IdentityRole>()
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddErrorDescriber<IdentityPortugueseMessages>()
