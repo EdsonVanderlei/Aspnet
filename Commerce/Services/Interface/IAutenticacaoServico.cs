@@ -1,6 +1,6 @@
-﻿using Commerce.Models;
+﻿ using Commerce.Models;
 
-namespace Commerce.Services
+namespace Commerce.Services.Interface
 {
     public interface IAutenticacaoServico
     {

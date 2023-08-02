@@ -12,7 +12,6 @@ namespace Commerce.Data.Mappings
             builder.Property(p => p.PrazoDias).IsRequired().HasColumnType("bigint");
             builder.Property(p => p.ValorFrete).IsRequired().HasColumnType("DECIMAL(11,2)");
             builder.HasOne(p => p.Pedido).WithOne(p => p.Entrega);
-            // builder.HasOne<Pedido>(p => p.Pedido).WithOne(p => p.Entrega).HasForeignKey<Entrega>(p => p.PedidoId);
             builder.ToTable("Entregas");
         }
     }

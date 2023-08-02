@@ -10,7 +10,6 @@ namespace Commerce.Data.Mappings
         {
             builder.HasKey(p => p.Id);
             builder.HasOne(e => e.Usuario).WithOne( u => u.Endereco);
-            // builder.HasOne<Usuario>(p => p.Usuario).WithOne(p => p.Endereco).HasForeignKey<Usuario>(p => p.EnderecoId);
             builder.HasMany(p => p.Entregas).WithOne(p => p.Endereco);
             builder.Property(p => p.Numero).IsRequired().HasColumnType("bigint");
             builder.Property(p => p.Logradouro).IsRequired().HasColumnType("varchar(70)");

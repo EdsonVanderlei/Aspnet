@@ -48,30 +48,20 @@ namespace Commerce.Services
             var Usuario = _mapper.Map<Usuario>(usuario);
             var Endereco = _mapper.Map<Endereco>(usuario.Endereco);
             var validator = new UsuarioValidation();
-            ExecutarValidacao(new UsuarioValidation(), Usuario);
-            ExecutarValidacao(new EnderecoValidation(), Endereco);
-
-            if (await _repositoryUsuario.Buscar(p => p.Email == Usuario.Email) != null)
+            if(!ExecutarValidacao(new UsuarioValidation(), Usuario))return;
+            if(!ExecutarValidacao(new EnderecoValidation(), Endereco)) return ;
+            var result = await _repositoryUsuario.BuscarTodos(p => p.Email == Usuario.Email || p.Cpf == Usuario.Cpf || p.Telefone == Usuario.Telefone);
+            if (result.Any())
             {
-                Notificar("Já possui um E-mail Cadastrado !");
+                Notificar("Dados já cadastrados !");
+                return;
             }
-            if (await _repositoryUsuario.Buscar(p => p.Cpf == Usuario.Cpf) != null)
-            {
-                Notificar("Já possui um Cpf Cadastrado !");
-            }
-          
-            if (await _repositoryUsuario.Buscar(p => p.Telefone == Usuario.Telefone) != null)
-            {
-                Notificar("Telefone já existente !");
-            }
-
-            if (TemNotificacao()) return;
-
+           
             Usuario.Cpf = Regex.Replace(Usuario.Cpf, "[^0-9]", "");
             Usuario.Telefone = Regex.Replace(Usuario.Telefone, "[^0-9]", "");
             Usuario.Endereco = Endereco;
             Usuario.Endereco.Cep = Regex.Replace(Endereco.Cep, "[^0-9]", "");
-            Usuario.Senha =  BCrypt.Net.BCrypt.HashPassword(Usuario.Senha, 10);
+            Usuario.Senha = BCrypt.Net.BCrypt.HashPassword(Usuario.Senha, 10);
             await _repositoryUsuario.Adicionar(Usuario);
 
             Dispose();
