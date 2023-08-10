@@ -2,10 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\Commerce",
-    "\\Commerce\\Configuration",
     "\\Commerce\\Controllers",
-    "\\Commerce\\Services"
+    "\\Commerce\\Notifications",
+    "\\Commerce\\Services",
+    "\\Commerce\\Services\\Interface"
   ],
-  "SelectedNode": "\\Commerce\\Controllers\\UsuarioController.cs",
+  "SelectedNode": "\\Commerce\\Notifications\\Notificador.cs",
   "PreviewInSolutionExplorer": false
 }

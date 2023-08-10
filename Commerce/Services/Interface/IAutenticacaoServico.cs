@@ -1,10 +1,10 @@
-﻿ using Commerce.Models;
+﻿using Commerce.Models;
 
 namespace Commerce.Services.Interface
 {
     public interface IAutenticacaoServico
     {
-        Task<bool> Logar(Login registro);
-        Task<bool> Registrar(Registro registro);
+        Task<string> Logar(Login login);
+        Task<string> Registrar(Registro registro);
     }
 }

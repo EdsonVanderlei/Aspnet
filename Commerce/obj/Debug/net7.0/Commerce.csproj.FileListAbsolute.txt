@@ -164,3 +164,4 @@ C:\Users\Edson S Vanderlei\Source\Repos\EdsonVanderlei\Aspnet\Commerce\bin\Debug
 C:\Users\Edson S Vanderlei\Source\Repos\EdsonVanderlei\Aspnet\Commerce\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\Edson S Vanderlei\Source\Repos\EdsonVanderlei\Aspnet\Commerce\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Edson S Vanderlei\Source\Repos\EdsonVanderlei\Aspnet\Commerce\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\Edson S Vanderlei\Source\Repos\EdsonVanderlei\Aspnet\Commerce\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

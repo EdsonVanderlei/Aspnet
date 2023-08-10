@@ -18,19 +18,16 @@ namespace Commerce.Controllers
             _notificador = notificador;
         }
 
-        protected bool CustomRespomse(ModelStateDictionary modelState)
+        protected ActionResult CustomResponse(ModelStateDictionary modelState)
         {
-            if (ModelState.IsValid)
-            {
-                return true;
-            }
+       
             var erros = modelState.SelectMany(p => p.Value.Errors).ToList();
-            foreach( var erro in erros)
+
+            return BadRequest(new
             {
-                string message = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
-                _notificador.Handle(new Notificacao(message));
-            }
-            return false;
+                sucesso = false,
+                erros = erros
+            });
         }
 
         protected ActionResult CustomResponse(object obj = null)
